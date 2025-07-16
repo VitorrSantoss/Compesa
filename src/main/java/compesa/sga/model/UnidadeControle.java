@@ -48,7 +48,7 @@ public class UnidadeControle {
   private String autor;
 
   @NotNull(message = "CAMPO {ultimaAtualizacao} OBRIGATÓRIO.")
-  @Column(nullable = false)
+  @Column(name = "ultima_atualização", nullable = false)
   private LocalDate ultimaAtualizacao;
 
   public UnidadeControleDto converterParaDto() {
