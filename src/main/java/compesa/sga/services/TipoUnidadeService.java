@@ -17,40 +17,66 @@ public class TipoUnidadeService {
   @Autowired
   private TipoUnidadeRepository tipoUnidadeRepository;
 
+  public List<TipoUnidadeDto> getAllTipoUnidadeService() {
 
-  public List<TipoUnidadeDto> GetAllTipoUnidadeService(){
-    
     List<TipoUnidade> tiposUnidade = tipoUnidadeRepository.findAll();
 
     List<TipoUnidadeDto> dtos = new ArrayList<>();
 
-    for(TipoUnidade tipoUnidade : tiposUnidade){
+    for (TipoUnidade tipoUnidade : tiposUnidade) {
       dtos.add(tipoUnidade.converterDto());
     }
 
     return dtos;
   }
 
-
-  public TipoUnidadeDto GetTipoUnidadeById(int id){
+  public TipoUnidadeDto getTipoUnidadeById(int id) {
     Optional<TipoUnidade> tipoUnidadeOpt = tipoUnidadeRepository.findById(id);
 
-    if (tipoUnidadeOpt.isPresent()){
+    if (tipoUnidadeOpt.isPresent()) {
       TipoUnidade tipoUnidade = tipoUnidadeOpt.get();
       return tipoUnidade.converterDto();
     }
     return null;
   }
 
-
-  public void DeleteTipoUnidade(int id){
+  public void deleteTipoUnidade(int id) {
     tipoUnidadeRepository.deleteById(id);
   }
-  
 
-  public TipoUnidade SaveTipoUnidade(TipoUnidade tipoUnidade){
+  public TipoUnidade saveTipoUnidade(TipoUnidade tipoUnidade) {
     return tipoUnidadeRepository.save(tipoUnidade);
   }
 
+  public TipoUnidade updateParcial(int id, TipoUnidade atualizacao) {
+    Optional<TipoUnidade> tipoUnidadeAtual = tipoUnidadeRepository.findById(id);
+
+    // Verificando se o container (optional) possui o objeto "TipoUnidade"
+    if (tipoUnidadeAtual.isPresent()) {
+      TipoUnidade tipoUnidade = tipoUnidadeAtual.get();
+
+      // Aplicação dos campos que foram fornecidos no JSON (postman/swagger)
+      if (atualizacao.getNome() != null) {
+        tipoUnidade.setNome(atualizacao.getNome());
+      }
+
+      if (atualizacao.getDataRegistro() != null) {
+        tipoUnidade.setDataRegistro(atualizacao.getDataRegistro());
+      }
+
+      if (atualizacao.getAutor() != null) {
+        tipoUnidade.setAutor(atualizacao.getAutor());
+      }
+
+      if (atualizacao.getDisable() != null) {
+        tipoUnidade.setDisable(atualizacao.getDisable());
+      }
+
+      return tipoUnidadeRepository.save(tipoUnidade);
+    } else {
+      throw new RuntimeException("TipoUnidade não encontrado com id: " + id);
+    }
+
+  }
 
 }
