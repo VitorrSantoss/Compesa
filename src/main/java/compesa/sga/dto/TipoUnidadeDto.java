@@ -15,6 +15,6 @@ public class TipoUnidadeDto {
   private String nome;
   private LocalDate dataRegistro;
   private String autor;
-  private boolean disable;
+  private Boolean disable;
   
 }

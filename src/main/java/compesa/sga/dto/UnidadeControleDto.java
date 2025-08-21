@@ -15,7 +15,7 @@ public class UnidadeControleDto {
   private int id;
   private String nome;
   private TipoControle tipoControleId;
-  private boolean disable;
+  private Boolean disable;
   private LocalDate vigencia;
   private String autor;
   private LocalDate ultimaAtualizacao;
