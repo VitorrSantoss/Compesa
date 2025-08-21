@@ -17,7 +17,7 @@ public class UnidadeControleService {
   @Autowired
   private UnidadeControleRepository unidadeControleRepository;
 
-  public List<UnidadeControleDto> GetAllUnidadeControle() {
+  public List<UnidadeControleDto> getAllUnidadeControle() {
 
     List<UnidadeControle> unidadesControle = unidadeControleRepository.findAll();
 
@@ -30,7 +30,7 @@ public class UnidadeControleService {
     return dtos;
   }
 
-  public UnidadeControleDto GetUnidadeControleById(int id) {
+  public UnidadeControleDto getUnidadeControleById(int id) {
 
     Optional<UnidadeControle> unidadeControleOpt = unidadeControleRepository.findById(id);
 
@@ -41,14 +41,51 @@ public class UnidadeControleService {
     return null;
   }
 
-
-  public void DeleteUnidadeControle(int id){
+  public void deleteUnidadeControle(int id){
     unidadeControleRepository.deleteById(id);  
   }
 
-
-  public UnidadeControle SaveUnidadeControle(UnidadeControle unidadeControle){
+  public UnidadeControle saveUnidadeControle(UnidadeControle unidadeControle){
     return unidadeControleRepository.save(unidadeControle);
+  }
+
+  public UnidadeControle uptadeParcial(int id, UnidadeControle atualizacao){
+    Optional<UnidadeControle> unidadeControleAtual = unidadeControleRepository.findById(id);
+
+    // Verificação se o container (optional) possui o objeto "UnidadeControle"
+    if (unidadeControleAtual.isPresent()){
+      UnidadeControle unidadeControle = unidadeControleAtual.get();
+
+      // Aplicação dos campos que foram fornecidos no JSON (postman/swagger)
+      if (atualizacao.getNome() != null){
+        unidadeControle.setNome(atualizacao.getNome());
+      }
+
+      if (atualizacao.getTipoControleId() != null){
+        unidadeControle.setTipoControleId(atualizacao.getTipoControleId());
+      }
+
+      if (atualizacao.getVigencia() != null){
+        unidadeControle.setVigencia(atualizacao.getVigencia());
+      }
+
+      if (atualizacao.getAutor() != null){
+        unidadeControle.setAutor(atualizacao.getAutor());
+      }
+
+      if (atualizacao.getUltimaAtualizacao() != null) {
+        unidadeControle.setUltimaAtualizacao(atualizacao.getUltimaAtualizacao());
+      }
+
+      if (atualizacao.getDisable() != null){
+        unidadeControle.setDisable(atualizacao.getDisable());
+      }
+
+      return unidadeControleRepository.save(unidadeControle);
+    }
+    else{
+      throw new RuntimeException("UnidadeControle não encontrado com id " + id);
+    }
   }
 
 }
