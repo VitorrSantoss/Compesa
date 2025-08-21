@@ -28,16 +28,14 @@ public class UnidadeControle {
   @NotNull(message = "CAMPO {nome} OBRIGATÓRIO.") // NOT NULL -> REQUISIÃO
   @Column(nullable = false) // NOT NULL -> BANCO DE DADOS
   private String nome;
-
-  // @NotNull(message = "Campo {tipoControle} obrigatório.")
-  // @Column(nullable = false)
+  
   @ManyToOne
   @JoinColumn(name = "tipo_controle_id")
   private TipoControle tipoControleId;
 
   @NotNull(message = "CAMPO {disable} OBRIGATÓRIO.")
   @Column(nullable = false)
-  private boolean disable;
+  private Boolean disable;
 
   @NotNull(message = "CAMPO {vigencia} OBRIGATÓRIO.")
   @Column(nullable = false)
