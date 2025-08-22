@@ -7,6 +7,5 @@ import compesa.sga.model.UnidadeControle;
 
 @Repository
 public interface UnidadeControleRepository extends JpaRepository <UnidadeControle, Integer> {
-
-  
+ 
 }
