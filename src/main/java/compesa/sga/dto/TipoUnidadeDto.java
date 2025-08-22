@@ -16,5 +16,4 @@ public class TipoUnidadeDto {
   private LocalDate dataRegistro;
   private String autor;
   private Boolean disable;
-  
 }
