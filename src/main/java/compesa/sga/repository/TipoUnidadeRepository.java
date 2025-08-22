@@ -9,6 +9,3 @@ import compesa.sga.model.TipoUnidade;
 public interface TipoUnidadeRepository extends JpaRepository <TipoUnidade, Integer> {
 
 }
-
-  
-
