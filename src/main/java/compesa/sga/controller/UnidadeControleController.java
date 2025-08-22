@@ -52,7 +52,6 @@ public class UnidadeControleController {
     if (Objects.isNull(unControleDto)) {
       return ResponseEntity.notFound().build();
     }
-
     unidadeControleService.deleteUnidadeControle(id);
 
     return ResponseEntity.noContent().build();
@@ -72,7 +71,6 @@ public class UnidadeControleController {
     if (Objects.isNull(uniControle)){
       return ResponseEntity.noContent().build();
     }
-
     unidadeControle.setId(id);
 
     return ResponseEntity.ok().body(unidadeControleService.saveUnidadeControle(unidadeControle));
