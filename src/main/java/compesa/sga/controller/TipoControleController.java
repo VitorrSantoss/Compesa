@@ -54,7 +54,6 @@ public class TipoControleController {
     if (Objects.isNull(tControleDto)) {
       return ResponseEntity.notFound().build();
     }
-
     tipoControleService.deleteTipoControle(id);
 
     return ResponseEntity.noContent().build();
@@ -69,13 +68,11 @@ public class TipoControleController {
 
   // 5º ENDPOINT
   @PutMapping("/{id}")
-  public ResponseEntity<TipoControle> PutTipoControle(@PathVariable("id") int id,
-      @RequestBody TipoControle tipoControle) {
+  public ResponseEntity<TipoControle> PutTipoControle(@PathVariable("id") int id, @RequestBody TipoControle tipoControle) {
     TipoControleDto tControleDto = tipoControleService.getTipoControleById(id);
     if (Objects.isNull(tControleDto)) {
       return ResponseEntity.noContent().build();
     }
-
     tipoControle.setId(id);
 
     return ResponseEntity.ok().body(tipoControleService.saveTipoControle(tipoControle));
@@ -83,7 +80,7 @@ public class TipoControleController {
 
   // 6º ENDPOINT
   @PatchMapping("/{id}")
-  public ResponseEntity<TipoControle> atualizarTipoControleParcialmente(@PathVariable int id,@RequestBody TipoControle atualizacao) {
+  public ResponseEntity<TipoControle> atualizarTipoControleParcialmente(@PathVariable int id, @RequestBody TipoControle atualizacao) {
     TipoControle dadosAtualizado = tipoControleService.updateParcial(id, atualizacao);
     
     return ResponseEntity.ok(dadosAtualizado);
