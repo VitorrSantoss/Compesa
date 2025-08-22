@@ -19,5 +19,4 @@ public class UnidadeControleDto {
   private LocalDate vigencia;
   private String autor;
   private LocalDate ultimaAtualizacao;
-
 }
