@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import compesa.sga.model.TipoControle;
 
 @Repository
-public interface TipoControleRepository extends JpaRepository <TipoControle, Integer>{
+public interface TipoControleRepository extends JpaRepository <TipoControle, Integer> {
   
 }
