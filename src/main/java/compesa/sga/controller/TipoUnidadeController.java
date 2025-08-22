@@ -54,7 +54,6 @@ public class TipoUnidadeController {
     if (Objects.isNull(tUnidadeDto)) {
       return ResponseEntity.notFound().build();
     }
-
     tipoUnidadeService.deleteTipoUnidade(id);
 
     return ResponseEntity.noContent().build();
@@ -74,7 +73,6 @@ public class TipoUnidadeController {
     if (Objects.isNull(tDto)) {
       return ResponseEntity.noContent().build();
     }
-
     tipoUnidade.setId(id);
 
     return ResponseEntity.ok().body(tipoUnidadeService.saveTipoUnidade(tipoUnidade));
@@ -84,8 +82,8 @@ public class TipoUnidadeController {
   @PatchMapping("/{id}")
   public ResponseEntity<TipoUnidade> atualizarTipoUnidadeParcialmente(@PathVariable int id, @RequestBody TipoUnidade atualizacao) {
     TipoUnidade dadosAtualizado = tipoUnidadeService.updateParcial(id, atualizacao);
-    return ResponseEntity.ok(dadosAtualizado);
 
+    return ResponseEntity.ok(dadosAtualizado);
   }
 
 }
